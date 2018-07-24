@@ -19,6 +19,7 @@ public class Author {
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Book> books = new HashSet<>();
 
+
     public Author() {
     }
 

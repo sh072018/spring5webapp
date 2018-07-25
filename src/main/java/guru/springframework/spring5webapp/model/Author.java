@@ -1,5 +1,7 @@
 package guru.springframework.spring5webapp.model;
 
+import org.hibernate.engine.internal.Cascade;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -14,14 +16,17 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @ManyToMany
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
 
     public Author() {
 
+    }
+
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Author(String firstName, String lastName, Set<Book> books) {
